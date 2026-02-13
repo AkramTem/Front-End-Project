@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book Log</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar__inner">
+      <div>
+        <h1>Book Log</h1>
+        <p class="sub">Track what you want to read, what you’re reading, and what you finished.</p>
+      </div>
+      <button id="seedBtn" class="btn btn--ghost" type="button" title="Add sample books">Seed</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Controls -->
+    <section class="panel">
+      <h2 class="panel__title">Add a book</h2>
+
+      <form id="bookForm" class="grid" autocomplete="off">
+        <label class="field">
+          <span>Title</span>
+          <input id="titleInput" type="text" placeholder="e.g., The Alchemist" required maxlength="120" />
+        </label>
+
+        <label class="field">
+          <span>Author (extra field)</span>
+          <input id="authorInput" type="text" placeholder="e.g., Paulo Coelho" required maxlength="120" />
+        </label>
+
+        <label class="field">
+          <span>Genre</span>
+          <select id="genreInput" required>
+            <option value="" selected disabled>Select</option>
+            <option>Fiction</option>
+            <option>Nonfiction</option>
+            <option>Fantasy</option>
+            <option>Romance</option>
+            <option>Thriller</option>
+            <option>Biography</option>
+            <option>Science</option>
+            <option>History</option>
+            <option>Other</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Status</span>
+          <select id="statusInput" required>
+            <option value="to-read" selected>To Read</option>
+            <option value="reading">Reading</option>
+            <option value="completed">Completed</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>ISBN (optional, helps cover)</span>
+          <input id="isbnInput" type="text" placeholder="e.g., 9780061122415" inputmode="numeric" maxlength="20" />
+        </label>
+
+        <div class="field actions">
+          <button class="btn" type="submit">Add</button>
+          <button id="clearBtn" class="btn btn--ghost" type="button">Clear all</button>
+        </div>
+      </form>
+
+      <div class="divider"></div>
+
+      <div class="grid controls">
+        <label class="field">
+          <span>Search (title/author)</span>
+          <input id="searchInput" type="search" placeholder="Type to search..." />
+        </label>
+
+        <label class="field">
+          <span>Filter status</span>
+          <select id="filterStatus">
+            <option value="all" selected>All</option>
+            <option value="to-read">To Read</option>
+            <option value="reading">Reading</option>
+            <option value="completed">Completed</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Sort by</span>
+          <select id="sortBy">
+            <option value="created-desc" selected>Newest</option>
+            <option value="created-asc">Oldest</option>
+            <option value="title-asc">Title (A→Z)</option>
+            <option value="title-desc">Title (Z→A)</option>
+            <option value="author-asc">Author (A→Z)</option>
+            <option value="rating-desc">Rating (High→Low)</option>
+          </select>
+        </label>
+
+        <label class="toggle">
+          <input id="soundToggle" type="checkbox" />
+          <span>Sound on completion</span>
+        </label>
+      </div>
+
+      <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+    </section>
+
+    <!-- List -->
+    <section class="panel">
+      <div class="panel__head">
+        <h2 class="panel__title">Your books</h2>
+        <p id="countText" class="muted"></p>
+      </div>
+
+      <ul id="bookList" class="list" aria-label="Book list"></ul>
+
+      <div id="emptyState" class="empty">
+        <p><strong>No books yet.</strong> Add one above to get started.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Confetti canvas -->
+  <canvas id="confetti" class="confetti" aria-hidden="true"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
